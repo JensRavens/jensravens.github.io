@@ -1,0 +1,17 @@
+---
+layout: default
+---
+<article>
+  {% if page.hero %}
+  <div class="hero" style="background-image: url({{page.hero}})"></div>
+  {% endif %}
+  <div class="container">
+    {{ content }}
+    <footer>
+      <small>Posted on {{ page.date | date: "%B %e, %Y" }}</small>
+      <p>
+        Jens Ravens is a Berlin-based iOS and Ruby on Rails developer working for <a href="http://nerdgeschoss.de" target="new">nerdgeschoss</a>. He is organizing the monthly <a href="http://swift.berlin" target="new">swift.berlin</a> meetup and is obsessed with application architecture and maintainable code bases in Swift and Ruby on Rails.
+      </p>
+    </footer>
+  </div>
+</article>

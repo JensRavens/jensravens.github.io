@@ -1,0 +1,35 @@
+---
+# Only the main Sass file needs front matter (the dashes are enough)
+---
+@charset "utf-8";
+
+
+
+// Our variables
+$font-family-heading: "Open Sans", Times, serif;
+$font-family: Cardo, Times, serif;
+$font-size:   22px;
+$line-height: 1.7;
+
+$padding:     10px;
+$padding-big: 2*$padding;
+$container:   800px;
+$break: $container + 20px;
+
+$color-text:       #2A2C39;
+$color-text-muted: #7f8c8d;
+$color-background: #fdfdfd;
+$color-tint:       #e74c3c;
+$color-tint-alt:   #e7cc3c;
+
+$border-radius:    3px;
+
+
+// Import partials from `sass_dir` (defaults to `_sass`)
+@import
+        "base",
+        "typo",
+        "layout",
+        "article",
+        "syntax-highlighting"
+;

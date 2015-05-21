@@ -1,0 +1,11 @@
+---
+title: Home
+---
+{% for post in site.posts %}
+  <h2>{{ post.title }}</h2>
+  <p>
+    {{ post.abstract }}
+    <br>
+    <a href="{{ post.url }}">read more</a>
+  </p>
+{% endfor %}

@@ -1,0 +1,26 @@
+body {
+    color: $color-text;
+    background-color: $color-background;
+}
+
+body.post {
+  border-top: 4px solid $color-tint;
+}
+
+img {
+  display: block;
+  width: 100%;
+}
+
+
+html, body {
+  position: relative;
+  min-height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  padding-bottom: 60px;
+}
+

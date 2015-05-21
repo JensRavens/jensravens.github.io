@@ -1,0 +1,45 @@
+article {
+  padding-top: 4*$padding;
+
+  h1 + p {
+    font-weight: bold;
+  }
+
+  img {
+    margin: 0 -10px;
+    width: calc(100% + 20px);
+
+    @media(min-width: $container+2*20px){
+      margin: 0 -1*20px;
+      width: calc(100% + #{2*20px})
+    }
+  }
+
+  pre {
+    margin: 0 -10px;
+    width: calc(100% + 20px);
+    padding: 0 10px;
+    box-sizing: border-box;
+
+    @media(min-width: $container+2*20px){
+      margin: 0 -20px;
+      width: calc(100% + 40px);
+      padding: 10px 20px;
+      border-radius: $border-radius;
+    }
+
+    overflow: auto;
+  }
+}
+
+.hero {
+  height: 300px;
+  margin-top: -4*$padding + 4px;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  @media(min-width: $break){
+    height: 400px;
+  }
+}
