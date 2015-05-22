@@ -1,5 +1,10 @@
 ---
 tags: swift, monads, errorhandling
+abstract: >
+  Handling errors is something most devlopers try to avoid. But error handling
+  got way more important on mobile devices where the user constantly switches
+  apps, the network connection drops in the middle of a transfer or the
+  application is terminated by memory pressure.
 ---
 
 # A _Swifter_ Way of _Handling Errors_
