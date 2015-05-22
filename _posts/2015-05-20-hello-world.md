@@ -2,6 +2,7 @@
 title:  'Hello World'
 tags: swift, monads
 date: 2015-05-20
+hero: /img/berlin.jpg
 abstract: >
   Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
   tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
