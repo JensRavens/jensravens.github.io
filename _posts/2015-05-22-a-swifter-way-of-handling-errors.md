@@ -1,7 +1,7 @@
 ---
 tags: swift, monads, errorhandling
 abstract: >
-  Handling errors is something most devlopers try to avoid. But error handling
+  Handling errors is something most developers try to avoid. But error handling
   got way more important on mobile devices where the user constantly switches
   apps, the network connection drops in the middle of a transfer or the
   application is terminated by memory pressure.
@@ -9,7 +9,7 @@ abstract: >
 
 # A _Swifter_ Way of _Handling Errors_
 
-Handling errors is something most devlopers try to avoid. Handling errors is no
+Handling errors is something most developers try to avoid. Handling errors is no
 fun. Coding _the happy path_ is way more entertaining. Who want's to handle an
 error if he could implement new and shiny features instead? But error handling
 got way more important on mobile devices where the user constantly switches

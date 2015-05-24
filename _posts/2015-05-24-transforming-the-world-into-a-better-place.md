@@ -7,7 +7,7 @@ abstract: >
   commands.
 ---
 
-# Transforming the world into a better place
+# *Transforming* the world into a better place
 
 If you ask a developer what a program is he is likely to respond: A sequence of
 commands. Value oriented programming takes a step back and lays the focus on
