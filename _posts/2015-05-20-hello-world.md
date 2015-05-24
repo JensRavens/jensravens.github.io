@@ -13,8 +13,9 @@ Last week I've attended UIKonf. One of the amazing speakers there was
 how this experience helped him. In the end he had a taks for everyone in the
 audience: Start a blog.
 
-So here we go: I started by transforming my own talk _Functional Reactive
-Programming without Black Magic_ into a series of blog posts you can find
+So here we go: I started by transforming my own talk
+[Functional Reactive Programming without Black Magic](http://www.slideshare.net/jensravens/functional-reactive-programming-without-black-magic)
+into a series of blog posts you can find
 [here](/series/functional-reactive-programming-in-swift).
 
 Also based on Ash Furrows talk I've changed my process to _Open Source by
