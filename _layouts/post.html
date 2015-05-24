@@ -6,11 +6,13 @@ layout: default
   <div class="hero" style="background-image: url({{page.hero}})"></div>
   {% endif %}
   <div class="container">
+    <div class="article-date">{{page.date | date: "%B %e, %Y"}}</div>
     {{ content }}
-    <footer>
-      <small>Posted on {{ page.date | date: "%B %e, %Y" }}</small>
-      <p>
-        Jens Ravens is a Berlin-based iOS and Ruby on Rails developer working for <a href="http://nerdgeschoss.de" target="new">nerdgeschoss</a>. He is organizing the monthly <a href="http://swift.berlin" target="new">swift.berlin</a> meetup and is obsessed with application architecture and maintainable code bases in Swift and Ruby on Rails.
+    <footer class="article-footer">
+      <p class="lead">I'm a Berlin-based iOS and Ruby on Rails developer working for <a href="http://nerdgeschoss.de">nerdgeschoss</a>. Also I'm organizing the monthly <a href="http://swift.berlin">swift.berlin</a> meetup and I'm obsessed with application architecture and maintainable code bases in Swift and Ruby on Rails.</p>
+
+      <p class="lead">
+        You can follow me on <a href="https://twitter.com/JensRavens">Twitter</a> or send me an <a href="mailto:blog@jensravens.de">email</a>.
       </p>
     </footer>
   </div>

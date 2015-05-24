@@ -38,6 +38,10 @@ article {
   }
 }
 
+.article-date {
+  text-align: right;
+}
+
 .article-series {
   font-size: 1rem;
   margin: 0;
@@ -51,6 +55,20 @@ article {
   &:hover {
     color: #eff1f5;
     background-color: #8fa1b3;
+  }
+}
+
+.article-footer {
+  text-align: center;
+  font-style: italic;
+  &:before {
+    content: '';
+    display: block;
+    position: relative;
+    width: 80px;
+    height: 4px;
+    margin: 0 auto;
+    background-color: $color-tint;
   }
 }
 
