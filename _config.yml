@@ -33,3 +33,10 @@ defaults:
     values:
       layout: 'post'
       class: 'post'
+  -
+    scope:
+      path: ''
+      type: 'drafts'
+    values:
+      layout: 'post'
+      class: 'post'
