@@ -1,6 +1,7 @@
 .container {
   max-width: $container;
   margin: 0 10px;
+  position: relative;
   @media(min-width: $container+20px){
     margin: 0 auto;
   }
@@ -14,6 +15,7 @@ nav.home {
   top: $padding + 2px;
   font-size: $font-size*.8;
   width: $size-nav;
+  z-index: 9999;
 
 
   @media(min-width: $break+2*$size-nav){

@@ -3,8 +3,16 @@ body {
     background-color: $color-background;
 }
 
-body.post {
-  border-top: 4px solid $color-tint;
+body.post, body.page {
+  &:before {
+    border-top: 4px solid $color-tint;
+    content: "";
+    display: block;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 9999;
+  }
 }
 
 img {
@@ -24,3 +32,6 @@ body {
   padding-bottom: 60px;
 }
 
+.text-centered {
+  text-align: center;
+}

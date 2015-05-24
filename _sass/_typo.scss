@@ -75,3 +75,8 @@ a {
 h1, h2, p {
   margin-bottom: $line-height*$font-size;
 }
+
+.lead {
+  clear: both;
+  font-style: italic;
+}

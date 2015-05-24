@@ -38,8 +38,34 @@ article {
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
+  position: relative;
+  color: white;
 
   @media(min-width: $break){
+    margin-top: 0;
     height: 400px;
   }
+
+  .container {
+    min-height: 100%;
+  }
+}
+
+img.profile {
+  width: 120px;
+  display: inline-block;
+  border-radius: 64px;
+  border: 4px solid white;
+  box-shadow: 0 0 3px rgba($color-text, 0.3);
+}
+
+.hero-profile {
+  height: 140px;
+  width: 140px;
+  background-image: url(/img/profile.jpg);
+  background-size: 140px 140px;
+  border-radius: 3px;
+  position: absolute;
+  bottom: -40px;
+  border: 4px solid white;
 }

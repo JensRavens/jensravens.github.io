@@ -16,7 +16,7 @@ commands.
 
 Let's look at a basic unix example:
 
-``` bash
+```bash
 ls | grep *.jpg | sort
 ```
 
@@ -40,7 +40,7 @@ This all conforms to the basic unix principle:
 
 This is how these functions would look in Swift:
 
-``` swift
+```swift
 func ls(path: String)->[String]
 
 func grep(pattern: String)(lines: [String])->[String]
@@ -52,7 +52,7 @@ These functions share a common pattern of transforming values of one type to
 another one, so let's just call them a _transform function_ if they have this
 kind of signature:
 
-``` swift
+```swift
 func transform<A,B>(value: A)->B
 ```
 
@@ -60,7 +60,7 @@ But of course this is only the first half of the story. Commands may fail. You
 find some ideas on error handling [here]({% post_url 2015-05-22-a-swifter-way-of-handling-errors %}).
 A more generic failable version of a transform would look like this:
 
-``` swift
+```swift
 func transform<A,B>(value: A)->Result<B>
 ```
 
@@ -73,7 +73,7 @@ schema of functions that fits most use cases.
 Imagine you're having a list of directorys and you want to list their contents.
 The usual ObjC way would have been:
 
-``` objective-c
+```objective-c
 NSArray* dirs = @[@"/home", @"/root"];
 NSMutableArray* paths = [NSMutableArray array];
 for (NSString* dir in dirs) {
@@ -85,7 +85,7 @@ This code doesn't descibe what we want to be done but how we want it to be done.
 As this kind of task is quite common (and you've written it hundreds of times)
 there's something built into the standard library to help:
 
-``` swift
+```swift
 let dirs = ["/home", "/root"];
 let paths = dirs.map(ls)
 ```
@@ -108,7 +108,7 @@ But what does `map` actually do? It
 Does this sound more general to you than an array? `map` is defined for way more
 than just array. Here's an example for `Optional<T>`:
 
-``` swift
+```swift
 let optionalString: String?
 
 let optionalUppercase = optionalString.map { string in
@@ -127,12 +127,12 @@ functions. This corresponds to the idea of object oriented programming of
 composing small objects to bigger objects for more complex tasks. Composing
 can look like this in bash:
 
-``` bash
+```bash
 ls | grep *.jpg | sort
 ```
 and Swift:
 
-``` swift
+```swift
 sort(grep("*.jpg")(ls("/home")))
 ```
 
@@ -144,7 +144,7 @@ first written). We'll do something about it in the next post.
 We've already seen how versatile and useful map can be. So let's extend the
 `Result<T>` type from the first post to support a map function:
 
-``` swift
+```swift
 enum Result<T> {
   case Success(Box<T>)
   case Error(NSError)
@@ -169,7 +169,7 @@ All transforms so far will return (after whatever timespan that might be)
 with a result. But this blocks the execution of the thread. Let's
 take a look at another kind of function:
 
-``` swift
+```swift
 func requestFromNetwork(url: NSURL, completion:(Result<NSData>->Void)){
     // do something async and call completion handler
 }
@@ -186,7 +186,7 @@ to it.
 
 We end up with these 4 kinds of functions that transform a value to another one:
 
-``` swift
+```swift
 // synchronous, non failing
 func transform<A,B>(value: A)->B
 
