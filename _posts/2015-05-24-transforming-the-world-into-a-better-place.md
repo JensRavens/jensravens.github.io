@@ -1,5 +1,7 @@
 ---
-tags: swift, monads, errorhandling
+tags: [swift, monads, errorhandling]
+series: Functional Reactive Programming in Swift
+series-index: 2
 abstract: >
   If you ask a developer what a program is he is likely to respond: A sequence of
   commands. Value oriented programming takes a step back and lays the focus on

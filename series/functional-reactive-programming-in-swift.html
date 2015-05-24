@@ -1,0 +1,21 @@
+---
+layout: series
+series: Functional Reactive Programming in Swift
+permalink: /series/functional-reactive-programming-in-swift/
+---
+
+<h1>{{page.series}}</h1>
+
+{% for post in site.posts reversed %}
+  <article class="article-preview">
+    <h2>{{ post.title }}</h2>
+    {% if post.series %}
+    <a href="/series/{{post.series | slugify}}" class="article-series">Part {{post.series-index}}</a>
+    {% endif %}
+    <p>
+      {{ post.abstract }}
+      <br>
+      <a href="{{ post.url }}">read more</a>
+    </p>
+  </article>
+{% endfor %}

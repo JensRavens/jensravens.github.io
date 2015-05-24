@@ -32,6 +32,28 @@ article {
   }
 }
 
+.article-preview {
+  h2 {
+    margin: 0 0 2*$padding;
+  }
+}
+
+.article-series {
+  font-size: 1rem;
+  margin: 0;
+  padding: 0 0.5rem;
+  color: #eff1f5;
+  text-decoration: none;
+  background-color: #4f5b66;
+  display: inline-block;
+  border-radius: 3px;
+
+  &:hover {
+    color: #eff1f5;
+    background-color: #8fa1b3;
+  }
+}
+
 .hero {
   height: 300px;
   margin-top: -4*$padding + 4px;
