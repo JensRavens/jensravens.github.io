@@ -7,15 +7,18 @@
   <meta name="description" content="{% if page.description %}{{ page.description }}{% else %}{{ page.abstract }}{% endif %}">
 
   <link rel="stylesheet" href="{{ "/css/main.css" | prepend: site.baseurl }}">
-  <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
   <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ "/feed.xml" | prepend: site.baseurl | prepend: site.url }}" />
   <link rel="icon" type="image/png" href="img/favicon.png">
 
+  <meta property="og:type" content="article">
   <meta name="twitter:card" content="summary" />
+  <meta property="og:title" content="{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}" />
   <meta name="twitter:title" content="{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}" />
+  <meta property="og:description" content="{% if page.description %}{{ page.description }}{% else %}{{ page.abstract }}{% endif %}." />
   <meta name="twitter:description" content="{% if page.description %}{{ page.description }}{% else %}{{ page.abstract }}{% endif %}." />
   <meta name="twitter:site" content="@jensravens" />
   {% if page.thumbnail %}
-    <meta name="twitter:image" content="{{site.url}}{{page.thumbnail}}" />
+    <meta name="twitter:image" content="{{page.thumbnail | prepend: site.url}}" />
+    <meta property="og:image" content="{{page.thumbnail | prepend: site.url}}" />
   {% endif %}
 </head>
