@@ -162,8 +162,8 @@ enum Result<T> {
 
 This implementation transforms a `Result<T>` into a `Result<U` by using a
 function. That function doesn't have to care about errors as it wont get called
-if the result wasn't successfull. Now our `Result<T>` behaves just like
-`Optional<T>`. One step closer to actually beeing useful.
+if the result wasn't successful. Now our `Result<T>` behaves just like
+`Optional<T>`. One step closer to actually being useful.
 
 ## Taming asynchronous transforms
 
