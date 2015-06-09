@@ -2,7 +2,9 @@
 tags: [swift, monads, errorhandling]
 series: Functional Reactive Programming in Swift
 series-index: 3
-abstract:
+abstract: |
+  Let's put all the previous stuff together to achieve our goal: Chaining
+  synchronous transforms with error handling unix style.
 ---
 
 # How to _Train_ your _Monad_
@@ -199,6 +201,18 @@ an `.Error` is returned instead. There is no chance to forget an error handling
 branch (and no "I'll do this later `//Fixme:`").
 
 
-## Applicative Functors
+## The monad and you
 
-Maybe you've stumbled across the term _Monad_.
+What we've just implemented is also called a monad. A monad is a thing that as a
+constructor and that defines bind. If you want to read more about monads, burritos
+and boxes take a look at [fuckingmonads.com](http://fuckingmonads.com). Also there
+is a great explanation at
+[Functors, Applicatives, And Monads In Pictures](http://adit.io/posts/2013-04-17-functors,_applicatives,_and_monads_in_pictures.html).
+
+## A deeper look into space
+
+We've seen a great application for synchronous bind methods - but handling async
+stuff is still missing. In the next chapter we'll take a look at `Signal<T>` and
+how to tame callback hell. In the end you will have seen the full implementation
+of [Interstellar](https://github.com/JensRavens/Interstellar), the reactive
+programming framework. We're almost there!
