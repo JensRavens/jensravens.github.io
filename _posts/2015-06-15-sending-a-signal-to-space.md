@@ -67,7 +67,7 @@ the current signal changes the mapped signal will be notified and changed as wel
 This also introduces the memory management for signals: Each signal keeps a
 reference to the child signals that depend on it via the subscribe block. If you
 let go of a signal all transformed signals will dealloc as well (unless you keep
-a reference to a transformed signal as well explicily).
+a reference to a transformed signal explicily).
 
 Next up are failable transforms:
 
@@ -157,7 +157,7 @@ fake a property in an extension). Every time the search bar updates it's text al
 subscribers to the signal will be called.
 
 Now it's pretty easy to execute a function every time the user types on the
-keyboard (next is a wrapper around subscribe that only executes if the result is
+keyboard (`next` is a wrapper around subscribe that only executes if the result is
 a `.Success`):
 
 ```swift
