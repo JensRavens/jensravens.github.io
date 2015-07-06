@@ -15,7 +15,7 @@ article {
     }
   }
 
-  pre {
+  pre, .article-moreFromSeries {
     margin: 0 -10px;
     width: calc(100% + 20px);
     padding: 0 10px;
@@ -108,4 +108,18 @@ img.profile {
   position: absolute;
   bottom: -40px;
   border: 4px solid white;
+}
+
+.article-moreFromSeries {
+  background-color: white;
+  border: 1px solid $color-tint;
+  font-size: 0.8rem;
+  margin-bottom: 40px !important;
+}
+
+.seriesList {
+  .current {
+    font-weight: bold;
+    text-decoration: none;
+  }
 }

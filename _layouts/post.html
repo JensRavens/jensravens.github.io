@@ -8,6 +8,20 @@ layout: default
   <div class="container">
     <div class="article-date">{{page.date | date: "%B %e, %Y"}}</div>
     {{ content }}
+
+    {% if page.series %}
+      <div class="article-moreFromSeries">
+        Read more posts from this series:
+        <ol class="seriesList">
+          {% for post in site.posts reversed %}
+            {% if post.series == page.series %}
+              <li><a class="{% if post.url == page.url %}current{% endif %}" href="{{ post.url }}">{{ post.title }}</a></li>
+            {% endif %}
+          {% endfor %}
+        </ol>
+      </div>
+    {% endif %}
+
     <footer class="article-footer">
       <p class="lead">I'm a Berlin-based iOS and Ruby on Rails developer working for <a href="http://nerdgeschoss.de">nerdgeschoss</a>. Also I'm organizing the monthly <a href="http://swift.berlin">swift.berlin</a> meetup and I'm obsessed with application architecture and maintainable code bases in Swift and Ruby on Rails.</p>
 
