@@ -1,6 +1,7 @@
 ---
 title: My talk at UIKonf 2015
 tags: [swift, monads, video]
+hero: /img/uikonf.jpg
 abstract: |
   During UIKonf 2015 I gave a talk about how to implement your own
   ReactiveCocoa using ideas from Swift like generics and value types.
