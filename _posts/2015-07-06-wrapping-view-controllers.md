@@ -69,7 +69,7 @@ of a button, you can attach the picker like this:
 let buttonSignal = Signal<Event>()
 buttonSignal
 .map {event in
-  .Campera
+  .Camera
 }
 .bind(ImageCapture(viewController: self).takePicture)
 .next { image in
