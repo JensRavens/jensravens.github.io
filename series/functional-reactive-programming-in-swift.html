@@ -7,19 +7,3 @@ permalink: /series/functional-reactive-programming-in-swift/
 <h1>Functional Reactive Programming in <em>Swift</em></h1>
 
 This is a series based on my talk <a href="http://www.slideshare.net/jensravens/functional-reactive-programming-without-black-magic">Functional Reactive Programming without Black Magic</a> at UIKonf in May 2015.
-
-{% for post in site.posts reversed %}
-  {% if post.series == page.series %}
-    <article class="article-preview">
-      <h2>{{ post.title }}</h2>
-      {% if post.series %}
-      <a href="/series/{{post.series | slugify}}" class="article-series">Part {{post.series-index}}</a>
-      {% endif %}
-      <p>
-        {{ post.abstract }}
-        <br>
-        <a href="{{ post.url }}">read more</a>
-      </p>
-    </article>
-  {% endif %}
-{% endfor %}
