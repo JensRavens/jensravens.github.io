@@ -124,7 +124,7 @@ optional as well.
 
 ## Composing Functions
 
-One great thing about functions is that you can compse them to build bigger
+One great thing about functions is that you can compose them to build bigger
 functions. This corresponds to the idea of object oriented programming of
 composing small objects to bigger objects for more complex tasks. Composing
 can look like this in bash:
@@ -148,19 +148,19 @@ We've already seen how versatile and useful map can be. So let's extend the
 
 ```swift
 enum Result<T> {
-  case Success(Box<T>)
+  case Success(T)
   case Error(NSError)
 
   func map<U>(f: T -> U) -> Result<U> {
     switch self {
-    case let .Success(v): return .Success(Box(f(v.value)))
+    case let .Success(v): return .Success(f(v.value))
     case let .Error(error): return .Error(error)
     }
   }
 }
 ```
 
-This implementation transforms a `Result<T>` into a `Result<U` by using a
+This implementation transforms a `Result<T>` into a `Result<U>` by using a
 function. That function doesn't have to care about errors as it wont get called
 if the result wasn't successful. Now our `Result<T>` behaves just like
 `Optional<T>`. One step closer to actually being useful.
@@ -197,6 +197,7 @@ func transform<A,B>(value: A, completion: (B->Void))
 
 // synchronous, failable
 func transform<A,B>(value: A)->Result<B>
+func transform<A,B>(value: A) throws -> B //Swift 2 version
 
 // async, failable
 func transform<A,B>(value: A, completion: (Result<B>->Void))

@@ -36,7 +36,7 @@ class Signal<T> {
 
   public func update(value: Result<T>) {
     self.value = value
-    self.callbacks.map{$0(value)}
+    self.callbacks.forEach{$0(value)}
   }
 }
 ```
@@ -72,26 +72,26 @@ a reference to a transformed signal explicily).
 Next up are failable transforms:
 
 ```swift
-func bind<U>(f: T -> Result<U>) -> Signal<U> {
+func flatMap<U>(f: T -> Result<U>) -> Signal<U> {
   let signal = Signal<U>()
   subscribe { result in
-    signal.update(result.bind(f))
+    signal.update(result.flatMap(f))
   }
   return signal
 }
 
-func bind<U>(f: (T, (Result<U>->Void))->Void) -> Signal<U> {
+func flatMap<U>(f: (T, (Result<U>->Void))->Void) -> Signal<U> {
   let signal = Signal<U>()
   subscribe { value in
-    value.bind(f)(signal.update)
+    value.flatMap(f)(signal.update)
   }
   return signal
 }
 ```
 
 The first one is for synchronous transforms (you may remember it from the Result
-implementation). The second one finally explains why we needed the async bind
-method for results. Chaining signals is now pretty easy: You can bind an async
+implementation). The second one finally explains why we needed the async flatMap
+method for results. Chaining signals is now pretty easy: You can flatMap an async
 function that may fail to a signal and immediately get a new signal back. You
 then subscribe to that new signal and get notified once the operation is complete.
 
@@ -147,7 +147,7 @@ extension UISearchBar: UISearchBarDelegate {
   }
 
   public func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
-    textSignal.update(.Success(Box(self.text)))
+    textSignal.update(.Success(self.text))
   }
 }
 ```

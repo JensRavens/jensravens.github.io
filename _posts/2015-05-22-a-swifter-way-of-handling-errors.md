@@ -119,38 +119,20 @@ enum Result<T> {
 }
 ```
 
-But there is currently an issue (as of Swift 1.2) that forbids enums to hold a
-generic value. So let's box things up:
-
-``` swift
-final class Box<A> {
-  public let value: A
-
-  public init(_ value: A) {
-    self.value = value
-  }
-}
-
-public enum Result<T> {
-  case Success(Box<T>)
-  case Error(NSError)
-}
-```
-
 Now we can define an elegant solution to our error handling problem:
 
 ``` swift
 func parseJson(data: NSData) -> Result<NSDictionary> {
     var error: NSError!
     if let json = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: nil) as? NSDictionary {
-        return .Success(Box(json))
+        return .Success(json)
     } else {
         return .Error(error)
     }
 }
 
 switch parseJson(data) {
-case let .Success(box): //handle the dictionary (box.value)
+case let .Success(value): //handle the dictionary
 case let .Error(error): //hande the error
 }
 ```
@@ -158,6 +140,23 @@ case let .Error(error): //hande the error
 Think of the result type as something similar to the `Optional`, just with an
 attached error for the nil case. In my opinion this should actually be part of
 the Swift standard library.
+
+## Throwing functions
+
+Swift 2 added the concept of throwing functions which are just some syntactic
+sugar around an internal result type. So
+
+``` swift
+func parseJson(data: NSData) -> Result<NSDictionary>
+```
+
+is pretty much identical (but not interchangeable) to
+
+``` swift
+func parseJson(data: NSData) throws -> NSDictionary
+```
+
+as it's either returning an `ErrorType` or a NSDictionary.
 
 ## Are we functional yet?
 

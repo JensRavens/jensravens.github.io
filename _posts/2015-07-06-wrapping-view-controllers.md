@@ -18,7 +18,7 @@ controllers in an async transform.
 
 For this example we'll build a transform that let's the user take a picture and
 returns a `Result<UIImage>`. We'll use `UIImagePickerController` and implement it's
-delegate in a class (this example uses Swift 2):
+delegate in a class:
 
 ```swift
 class ImageCapture: NSObject, UIImagePickerControllerDelegate, UINavigationControllerDelegate {

@@ -41,6 +41,7 @@ func transform<A,B>(value: A, completion: (B->Void))
 
 // synchronous, failable
 func transform<A,B>(value: A)->Result<B>
+func transform<A,B>(value: A) throws -> B //Swift 2 version
 
 // async, failable
 func transform<A,B>(value: A, completion: (Result<B>->Void))
@@ -56,7 +57,7 @@ public func map<U>(f:(T, (U->Void))->Void) -> (Result<U>->Void)->Void {
   return { g in
     switch self {
     case let .Success(v): f(v.value){ transformed in
-        g(.Success(Box(transformed)))
+        g(.Success(transformed))
       }
     case let .Error(error): g(.Error(error))
     }
@@ -73,7 +74,7 @@ func toHash(string: String, completion: Int->Void) {
   completion(count(string))
 }
 
-Result.Success(Box("Hello World")).map(toHash)(){ result in
+Result.Success("Hello World").map(toHash)(){ result in
   //result is now a .Success of Int with the value 11
 }
 ```
@@ -88,26 +89,26 @@ Let's consider applying a failable transform to a `Result<T>`:
 ```swift
 func toInt(string: String)->Result<Int>{
   if let int = string.toInt() {
-    return .Success(Box(int))
+    return .Success(int)
   } else {
     return .Error(NSError())
   }
 }
 
-Result.Success(Box("Hello World")).map(toInt)(){ result in
+Result.Success("Hello World").map(toInt)(){ result in
   // result is now of type Result<Result<Int>>
 }
 ```
 
 Mapping to a result of a result is actually pretty useless. In the end we'd
 prefer to either have success or a failure. Most languages call this feature
-`flatmap` (because it first maps and then flattens the result), `fmap` or `bind`.
-I'll go with `bind` here.
+`flatMap` (because it first maps and then flattens the result), `fmap` or `bind`.
+I'll go with `flatMap` here (there's something similar on Optional and Array in Swift2).
 
 ```swift
-public func bind<U>(f: T -> Result<U>) -> Result<U> {
+public func flatMap<U>(f: T -> Result<U>) -> Result<U> {
   switch self {
-  case let .Success(v): return f(v.value)
+  case let .Success(v): return f(v)
   case let .Error(error): return .Error(error)
   }
 }
@@ -117,7 +118,7 @@ If the result is a success, the next function is executed, if it's a failure the
 error is returned immediateley. The previous example now looks like this:
 
 ```swift
-Result.Success(Box("Hello World")).bind(toInt)(){ result in
+Result.Success("Hello World").flatMap(toInt)(){ result in
   // result is finally of type Result<Int>
 }
 ```
@@ -126,10 +127,10 @@ This looks a lot nicer. There is still one transform missing: The async failable
 transform:
 
 ```swift
-public func bind<U>(f:(T, (Result<U>->Void))->Void) -> (Result<U>->Void)->Void {
+public func flatMap<U>(f:(T, (Result<U>->Void))->Void) -> (Result<U>->Void)->Void {
   return { g in
     switch self {
-    case let .Success(v): f(v.value, g)
+    case let .Success(v): f(v, g)
     case let .Error(error): g(.Error(error))
     }
   }
@@ -142,13 +143,13 @@ it's completed:
 ```swift
 func toInt(string: String, completion:Result<Int>->Void){
   if let int = string.toInt() {
-    completion(.Success(Box(int)))
+    completion(.Success(int))
   } else {
     completion(.Error(NSError()))
   }
 }
 
-Result.Success(Box("Hello World")).bind(toInt)(){ result in
+Result.Success("Hello World").flatMap(toInt)(){ result in
   // result is again of type Result<Int>
 }
 ```
@@ -162,17 +163,17 @@ ls | grep *.jpg | sort
 ```
 
 ```swift
-let ls = Result.Success(Box(["/home/me.jpg", "home/data.json"]))
+let ls = Result.Success(["/home/me.jpg", "home/data.json"])
 let grep: String->([String]->Result<[String]>) = { pattern in
     return { paths in
-        return .Success(Box(paths))
+        return .Success(paths)
     }
 }
 let sort: [String]->Result<[String]> = { values in
-    return .Success(Box(sorted(values)))
+    return .Success(values.sort())
 }
 
-let chain = ls.bind(grep("*.jpg")).bind(sort) //Result<Array>
+let chain = ls.flatMap(grep("*.jpg")).flatMap(sort) //Result<Array>
 ```
 
 Let's revisit our wishlist:
@@ -189,7 +190,7 @@ an `.Error`.
 
 ### 3. Commands are chainable.
 
-By using map and bind wie can chain functions and get a result (this is not yet
+By using map and flatMap we can chain functions and get a result (this is not yet
 working for async transforms - we'll do something about that in the next post).
 By using generics we can be sure that only matching functions can be concatenated
 (this is actually an advancement over the unix implementation).
@@ -204,14 +205,14 @@ branch (and no "I'll do this later `//Fixme:`").
 ## The monad and you
 
 What we've just implemented is also called a monad. A monad is a thing that as a
-constructor and that defines bind. If you want to read more about monads, burritos
+constructor and that defines flatMap. If you want to read more about monads, burritos
 and boxes take a look at [fuckingmonads.com](http://fuckingmonads.com). Also there
 is a great explanation at
 [Functors, Applicatives, And Monads In Pictures](http://adit.io/posts/2013-04-17-functors,_applicatives,_and_monads_in_pictures.html).
 
 ## A deeper look into space
 
-We've seen a great application for synchronous bind methods - but handling async
+We've seen a great application for synchronous flatMap methods - but handling async
 stuff is still missing. In the next chapter we'll take a look at `Signal<T>` and
 how to tame callback hell. In the end you will have seen the full implementation
 of [Interstellar](https://github.com/JensRavens/Interstellar), the reactive
