@@ -29,7 +29,7 @@ class Thread {
 ```
 
 This method just executes a completion handler on the main Thread. It's pretty
-basic and simple to use (note we're using the Swift 2 version without a box class):
+basic and simple to use:
 
 ```swift
 let result = Result.Success("Hello")
