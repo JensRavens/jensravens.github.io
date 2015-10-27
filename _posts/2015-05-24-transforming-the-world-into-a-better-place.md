@@ -153,7 +153,7 @@ enum Result<T> {
 
   func map<U>(f: T -> U) -> Result<U> {
     switch self {
-    case let .Success(v): return .Success(f(v.value))
+    case let .Success(v): return .Success(f(v))
     case let .Error(error): return .Error(error)
     }
   }
