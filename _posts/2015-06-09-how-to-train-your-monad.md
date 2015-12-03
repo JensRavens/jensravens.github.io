@@ -20,7 +20,7 @@ transforms with error handling.
 We wanted to achieve a way of programming that is similar to the unix pipe:
 
 ```bash
-ls | grep *.jpg | sort
+ls | grep .jpg | sort
 ```
 
 Methods in this way of programming should have the following characteristics:
@@ -159,7 +159,7 @@ Result.Success("Hello World").flatMap(toInt)(){ result in
 Now we can finally do our unix example:
 
 ```bash
-ls | grep *.jpg | sort
+ls | grep .jpg | sort
 ```
 
 ```swift
@@ -173,7 +173,7 @@ let sort: [String]->Result<[String]> = { values in
     return .Success(values.sort())
 }
 
-let chain = ls.flatMap(grep("*.jpg")).flatMap(sort) //Result<Array>
+let chain = ls.flatMap(grep(".jpg")).flatMap(sort) //Result<Array>
 ```
 
 Let's revisit our wishlist:

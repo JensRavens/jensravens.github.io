@@ -19,7 +19,7 @@ commands.
 Let's look at a basic unix example:
 
 ```bash
-ls | grep *.jpg | sort
+ls | grep .jpg | sort
 ```
 
 This lists the current directory, filters everything except jpgs out and then
@@ -130,12 +130,12 @@ composing small objects to bigger objects for more complex tasks. Composing
 can look like this in bash:
 
 ```bash
-ls | grep *.jpg | sort
+ls | grep .jpg | sort
 ```
 and Swift:
 
 ```swift
-sort(grep("*.jpg")(ls("/home")))
+sort(grep(".jpg")(ls("/home")))
 ```
 
 You'll notice the reverse notation of the functions in Swift (last executed,
