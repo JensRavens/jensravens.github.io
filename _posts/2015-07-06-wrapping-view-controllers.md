@@ -71,7 +71,7 @@ buttonSignal
 .map {event in
   .Camera
 }
-.bind(ImageCapture(viewController: self).takePicture)
+.flatMap(ImageCapture(viewController: self).takePicture)
 .next { image in
   // here's the picture!
 }
