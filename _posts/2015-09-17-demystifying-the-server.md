@@ -14,19 +14,19 @@ Servers aren't a magical black box - they're just programs spitting out http res
 
 Here's what normally happens when you send a request to a server (no matter if it's via `curl` or `NSURLSession`):
 
-- You send a `GET` request to `jensravens.de`
+- You send a `GET` request to `jensravens.com`
 - A DNS server of your choice resolves the domain to an IP (192.30.252.153). Just think of it as a lookup in a phonebook that translates names into phone numbers.
 - A request is sent to that IP (more on the request later) via tcp
 - On the server (which is just a normal computer that is permanently connected to the internet) there is a process that listens on port 80 for tcp connections (80 is the default, but other ports would work as well). Usually that process is some dedicated web server like apache2 or nginx. It knows how to encrypt the connection via ssl, how http works and if the request is just for a plain file it's capable of delivering that file as a response.
 - If you request a dynamic resource (like a php site, ruby scripts or whatever language you like) it calls out to another process to return a response.
-- The external process does it's magic to create a http response.
+- The external process does it's magic to create an http response.
 - The response is sent back to the user via the proxy.
 
 Of course it's also possible to skip the proxy and let your web application do the http handling directly. But normally you don't want to do that as it's pretty complex.
 
 ## The _Language_ of the _Web_
 
-So how does that request look that is beeing sent? A very interesting part is the url of the request:
+So how does that request look that is being sent? A very interesting part is the url of the request:
 
 ```
 protocol://domain:port/path
@@ -45,7 +45,7 @@ Accept: */*
 
 As you can see the request is just some plain text that is sent via tcp over the wire (in http2 it will be binary instead, but the format will not change). The first line states the http verb, the path (/ is default if nothing else is specified) and the http version (1.1 is in use for years now, but http2 is on the rise).
 
-Next comes the host. So why should you as the client tell the server who he is? As you might remember from step 3 of the request the server is contacted via an IP, not by it's hostname. Therefore the server doesn't have to know it's own name. Also there can be multiple applications running on a single server.
+Next comes the host. So why should you as the client tell the server about it's own name? As you might remember from step 3 of the request the server is contacted via an IP, not by it's hostname. Therefore the server doesn't have to know it's own name. Also there can be multiple applications running on a single server.
 
 The User-Agent tells the request who is asking for a file (server side detection of old Internet Explorer versions is mostly done through this header).
 
@@ -69,7 +69,7 @@ Connection: Keep-Alive
 
 Let's go through this line by line:
 
-The first line confirms that the server likes to talk to us via the http 1.1 spec. Also the request was successfull (status `200 OK`). You can read all about status codes and their meaning at [HTTP Status Cats](https://www.flickr.com/photos/girliemac/sets/72157628409467125/) and at [Wikipedia](https://en.wikipedia.org/wiki/List_of_HTTP_status_codes).
+The first line confirms that the server likes to talk to us via the http 1.1 spec. Also the request was successful (status `200 OK`). You can read all about status codes and their meaning at [HTTP Status Cats](https://www.flickr.com/photos/girliemac/sets/72157628409467125/) and at [Wikipedia](https://en.wikipedia.org/wiki/List_of_HTTP_status_codes).
 
 Next comes content type and length. After requesting `*/*` the server decided to send us a web page (`text/html`) with a content that has a length of 7897 bytes (the content follows at the end of the response).
 
@@ -79,4 +79,4 @@ After two empty lines comes the content which in this case is just some plain te
 
 ## _Look Mommy_, I made a _Webserver_!
 
-So you might think now: Hey, that's just some plain text sent over a socket, I can do that myself! And you're absolutely right. Writing a simple http server is pretty easy and there are some libraries that help you like [CocoaAsyncSocket](https://github.com/robbiehanson/CocoaAsyncSocket) and [CCLHTTPServer](https://github.com/cocodelabs/CCLHTTPServer). But they all require to tighly couple your application code to network code (which makes it close to impossible to replace the network stack). Other languages had similar problems so the ruby community made [rack](http://rack.github.io/), a standard interface for ruby web applications that splits networking and request handling into manageable chunks. In the next part we'll explore which options there are for Swift and Objective C.
+So you might think now: Hey, that's just some plain text sent over a socket, I can do that myself! And you're absolutely right. Writing a simple http server is pretty easy and there are some libraries that help you like [CocoaAsyncSocket](https://github.com/robbiehanson/CocoaAsyncSocket) and [CCLHTTPServer](https://github.com/cocodelabs/CCLHTTPServer). But they all require to tightly couple your application code to network code (which makes it close to impossible to replace the network stack). Other languages had similar problems so the ruby community made [rack](http://rack.github.io/), a standard interface for ruby web applications that splits networking and request handling into manageable chunks. In the next part we'll explore which options there are for Swift and Objective C.
