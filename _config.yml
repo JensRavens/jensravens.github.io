@@ -16,7 +16,7 @@ permalink: :title/
 
 # Build settings
 # markdown: kramdown
-markdown: redcarpet
+markdown: kramdown
 
 defaults:
   -
