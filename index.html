@@ -17,7 +17,14 @@ thumbnail: /img/profile.jpg
     <article class="article-preview">
       <h2>{{ post.title }}</h2>
       {% if post.series %}
-      <a href="/series/{{post.series | slugify}}" class="article-series">{{post.series}} - Part {{post.series-index}}</a>
+      <a href="/series/{{post.series | slugify}}" class="article-series">
+        {{post.series}} -
+        {% if post.series-subtitle %}
+          {{post.series-subtitle}}
+        {% else %}
+          Part {{post.series-index}}
+        {% endif %}
+      </a>
       {% endif %}
       <p>
         {{ post.abstract }}
@@ -27,4 +34,3 @@ thumbnail: /img/profile.jpg
     </article>
   {% endfor %}
 </div>
-

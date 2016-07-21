@@ -1,14 +1,19 @@
 ---
 layout: default
 ---
+{% if page.hero %}
+<div class="hero" style="background-image: url({{page.hero}})"></div>
+{% endif %}
 <div class="container">
   {{ content }}
   {% for post in site.posts reversed %}
     {% if post.series == page.series %}
       <article class="article-preview">
         <h2>{{ post.title }}</h2>
-        {% if post.series %}
-        <a href="/series/{{post.series | slugify}}" class="article-series">Part {{post.series-index}}</a>
+        {% if post.series-subtitle %}
+          <em>{{post.series-subtitle}}</em>
+        {% else %}
+          <em>Part {{post.series-index}}</em>
         {% endif %}
         <p>
           {{ post.abstract }}
