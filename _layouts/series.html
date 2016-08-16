@@ -6,7 +6,7 @@ layout: default
 {% endif %}
 <div class="container">
   {{ content }}
-  {% for post in site.posts reversed %}
+  {% for post in site.posts %}
     {% if post.series == page.series %}
       <article class="article-preview">
         <h2>{{ post.title }}</h2>
