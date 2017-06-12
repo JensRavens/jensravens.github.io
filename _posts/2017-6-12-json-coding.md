@@ -1,6 +1,7 @@
 ---
 title: The Last Guide To Parsing JSON You Will Ever Need
 tags: [swift, json, encoding, decoding, parsing]
+hero: /img/uikonf.jpg
 series: Conference Talks
 series-subtitle: swift.berlin
 series-index: 8
