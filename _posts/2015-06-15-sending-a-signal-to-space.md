@@ -12,7 +12,7 @@ abstract: |
 We've already seen [how to handle a chain of failable, synchronous function calls.]({% post_url 2015-06-09-how-to-train-your-monad %})
 Next up we explore the missing piece: Async callbacks.
 
-Our previous example had a major drawback: All chaining magic via bind only
+Our previous example had a major drawback: All chaining magic via map and flat map only
 works if the function immediately returns with a result. If it takes some time
 and returns later via a callback block `Result<T>` is not a big help.
 
