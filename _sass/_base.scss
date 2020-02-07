@@ -1,11 +1,12 @@
 body {
-    color: $color-text;
-    background-color: $color-background;
+  color: var(--color-text);
+  background-color: var(--color-background);
 }
 
-body.post, body.page {
+body.post,
+body.page {
   &:before {
-    border-top: 4px solid $color-tint;
+    border-top: 4px solid var(--color-tint);
     content: "";
     display: block;
     position: fixed;
@@ -20,8 +21,8 @@ img {
   width: 100%;
 }
 
-
-html, body {
+html,
+body {
   position: relative;
   min-height: 100%;
   margin: 0;

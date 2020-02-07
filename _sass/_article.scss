@@ -1,5 +1,5 @@
 article {
-  padding-top: 4*$padding;
+  padding-top: 4 * $padding;
 
   h1 + p {
     font-weight: bold;
@@ -9,19 +9,20 @@ article {
     margin: 0 -10px;
     width: calc(100% + 20px);
 
-    @media(min-width: $container+2*20px){
-      margin: 0 -1*20px;
-      width: calc(100% + #{2*20px})
+    @media (min-width: $container+2*20px) {
+      margin: 0 -1 * 20px;
+      width: calc(100% + #{2 * 20px});
     }
   }
 
-  pre, .article-moreFromSeries {
+  pre,
+  .article-moreFromSeries {
     margin: 0 -10px;
     width: calc(100% + 20px);
     padding: 0 10px;
     box-sizing: border-box;
 
-    @media(min-width: $container+2*20px){
+    @media (min-width: $container+2*20px) {
       margin: 0 -20px;
       width: calc(100% + 40px);
       padding: 10px 20px;
@@ -34,7 +35,7 @@ article {
 
 .article-preview {
   h2 {
-    margin: 0 0 2*$padding;
+    margin: 0 0 2 * $padding;
   }
 }
 
@@ -43,18 +44,18 @@ article {
 }
 
 .article-series {
-  font-size: 1rem;
+  font-size: 0.8rem;
   margin: 0;
   padding: 0 0.5rem;
-  color: #eff1f5;
+  color: var(--color-tag-text) !important;
+  font-family: $font-family-heading;
   text-decoration: none;
-  background-color: #4f5b66;
+  background-color: var(--color-tag-background);
   display: inline-block;
   border-radius: 3px;
 
   &:hover {
-    color: #eff1f5;
-    background-color: #8fa1b3;
+    background-color: var(--color-tag-background-hover);
   }
 }
 
@@ -62,26 +63,26 @@ article {
   text-align: center;
   font-style: italic;
   &:before {
-    content: '';
+    content: "";
     display: block;
     position: relative;
     width: 80px;
     height: 4px;
     margin: 0 auto;
-    background-color: $color-tint;
+    background-color: var(--color-tint);
   }
 }
 
 .hero {
   height: 300px;
-  margin-top: -4*$padding + 4px;
+  margin-top: -4 * $padding + 4px;
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
   position: relative;
-  color: white;
+  color: var(--color-border);
 
-  @media(min-width: $break){
+  @media (min-width: $break) {
     margin-top: 0;
     height: 400px;
   }
@@ -95,10 +96,10 @@ img.profile {
   width: 140px;
   display: inline-block;
   border-radius: 50%;
-  border: 4px solid white;
-  box-shadow: 0 0 3px rgba($color-text, 0.3);
+  border: 4px solid var(--color-border);
+  box-shadow: 0 0 3px var(--color-shadow);
 
-  @media(min-width: 1024px) {
+  @media (min-width: 1024px) {
     width: 200px;
   }
 }
@@ -111,12 +112,12 @@ img.profile {
   border-radius: 3px;
   position: absolute;
   bottom: -40px;
-  border: 4px solid white;
+  border: 4px solid var(--color-border);
 }
 
 .article-moreFromSeries {
-  background-color: white;
-  border: 1px solid $color-tint;
+  background-color: var(--color-box);
+  border: 1px solid var(--color-tint);
   font-size: 0.8rem;
   margin-bottom: 40px !important;
 }

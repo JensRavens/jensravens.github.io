@@ -3,34 +3,37 @@ description: >
   I'm a Berlin-based iOS and Ruby on Rails developer working for nerdgeschoss. Also I'm organizing the monthly swift.berlin meetup and I'm obsessed with application architecture and maintainable code bases in Swift and Ruby on Rails.
 thumbnail: /img/profile.jpg
 ---
+
 <div class="container text-centered">
   <h1>Jens <em>Ravens</em></h1>
-  <img src="/img/profile.jpg" class="profile">
-  <p class="lead">I'm a Berlin-based iOS and Ruby on Rails developer working for <a href="http://nerdgeschoss.de">nerdgeschoss</a>. Also I'm organizing the monthly <a href="http://swift.berlin">swift.berlin</a> meetup and I'm obsessed with application architecture and maintainable code bases in Swift and Ruby on Rails.</p>
+  <img src="/img/profile.jpg" class="profile" />
+  <p class="lead">
+    I'm a Berlin-based iOS and Ruby on Rails developer working for
+    <a href="http://nerdgeschoss.de">nerdgeschoss</a>. I'm obsessed with
+    application architecture and maintainable code bases in Swift and Ruby on
+    Rails.
+  </p>
 
   <p class="lead">
-    You can follow me on <a href="https://twitter.com/JensRavens">Twitter</a> or send me an <a href="mailto:blog@jensravens.de">email</a>.
+    You can follow me on <a href="https://twitter.com/JensRavens">Twitter</a> or
+    send me an <a href="mailto:blog@jensravens.de">email</a>.
   </p>
 </div>
 <div class="container">
   {% for post in site.posts %}
-    <article class="article-preview">
-      <h2>{{ post.title }}</h2>
-      {% if post.series %}
-      <a href="/series/{{post.series | slugify}}" class="article-series">
-        {{post.series}} -
-        {% if post.series-subtitle %}
-          {{post.series-subtitle}}
-        {% else %}
-          Part {{post.series-index}}
-        {% endif %}
-      </a>
-      {% endif %}
-      <p>
-        {{ post.abstract }}
-        <br>
-        <a href="{{ post.url }}">read more</a>
-      </p>
-    </article>
+  <article class="article-preview">
+    <h2>{{ post.title }}</h2>
+    {% if post.series %}
+    <a href="/series/{{post.series | slugify}}" class="article-series">
+      {{post.series}} - {% if post.series-subtitle %} {{post.series-subtitle}}
+      {% else %} Part {{post.series-index}} {% endif %}
+    </a>
+    {% endif %}
+    <p>
+      {{ post.abstract }}
+      <br />
+      <a href="{{ post.url }}">read more</a>
+    </p>
+  </article>
   {% endfor %}
 </div>

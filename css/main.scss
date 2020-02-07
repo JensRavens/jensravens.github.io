@@ -1,35 +1,57 @@
 ---
 # Only the main Sass file needs front matter (the dashes are enough)
 ---
+
 @charset "utf-8";
-
-
 
 // Our variables
 $font-family-heading: "Open Sans", Times, serif;
 $font-family: Cardo, Times, serif;
-$font-size:   22px;
+$font-size: 22px;
 $line-height: 1.7;
 
-$padding:     10px;
-$padding-big: 2*$padding;
-$container:   800px;
+$padding: 10px;
+$padding-big: 2 * $padding;
+$container: 800px;
 $break: $container + 20px;
 
-$color-text:       #2A2C39;
-$color-text-muted: #7f8c8d;
-$color-background: #fdfdfd;
-$color-tint:       #e74c3c;
-$color-tint-alt:   #bf616a;
+$border-radius: 3px;
 
-$border-radius:    3px;
+:root {
+  --font-heading: "Open Sans", Times, serif;
+  --font: Cardo, Times, serif;
 
+  --size-font: 22px;
+  --size-padding: 10px;
+  --size-padding-big: 20px;
+  --size-container: 800px;
+
+  --color-text: #2a2c39;
+  --color-text-muted: #7f8c8d;
+  --color-background: #fdfdfd;
+  --color-box: #fff;
+  --color-border: #fff;
+  --color-tint: #e74c3c;
+  --color-tint-alt: #bf616a;
+  --color-tag-text: #eff1f5;
+  --color-tag-background: #4f5b66;
+  --color-tag-background-hover: #8fa1b3;
+  --color-shadow: rgba(#2a2c39, 0.3);
+
+  @media (prefers-color-scheme: dark) {
+    --color-text: #fdfdfd;
+    // --color-text-muted: #7f8c8d;
+    --color-background: #111320;
+    --color-box: #444653;
+    // --color-border: #fff;
+    // --color-tint: #e74c3c;
+    // --color-tint-alt: #bf616a;
+    // --color-tag-text: #eff1f5;
+    // --color-tag-background: #4f5b66;
+    // --color-tag-background-hover: #8fa1b3;
+    // --color-shadow: rgba(#2a2c39, 0.3);
+  }
+}
 
 // Import partials from `sass_dir` (defaults to `_sass`)
-@import
-        "base",
-        "typo",
-        "layout",
-        "article",
-        "syntax-highlighting"
-;
+@import "base", "typo", "layout", "article", "syntax-highlighting";

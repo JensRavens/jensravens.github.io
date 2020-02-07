@@ -1,24 +1,47 @@
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <title>{% if page.title %}{{ page.title }} | {{ site.title }}{% else %}{{ site.title }}{% endif %}</title>
-  <meta name="description" content="{% if page.description %}{{ page.description }}{% else %}{{ page.abstract }}{% endif %}">
+  <title>
+    {% if page.title %}{{ page.title }} | {{ site.title }}{% else %}{{
+    site.title }}{% endif %}
+  </title>
+  <meta
+    name="description"
+    content="{% if page.description %}{{ page.description }}{% else %}{{ page.abstract }}{% endif %}"
+  />
 
   <link rel="stylesheet" href="{{ "/css/main.css" | prepend: site.baseurl }}">
-  <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ "/feed.xml" | prepend: site.baseurl | prepend: site.url }}" />
-  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <link
+    href="https://fonts.googleapis.com/css?family=Cardo:400,400i|Open+Sans:400,700&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="alternate" type="application/rss+xml" title="{{ site.title }}"
+  href="{{ "/feed.xml" | prepend: site.baseurl | prepend: site.url }}" />
+  <link rel="icon" type="image/png" href="/img/favicon.png" />
 
-  <meta property="og:type" content="article">
+  <meta property="og:type" content="article" />
   <meta name="twitter:card" content="summary" />
-  <meta property="og:title" content="{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}" />
-  <meta name="twitter:title" content="{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}" />
-  <meta property="og:description" content="{% if page.description %}{{ page.description }}{% else %}{{ page.abstract }}{% endif %}." />
-  <meta name="twitter:description" content="{% if page.description %}{{ page.description }}{% else %}{{ page.abstract }}{% endif %}." />
+  <meta
+    property="og:title"
+    content="{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}"
+  />
+  <meta
+    name="twitter:title"
+    content="{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}"
+  />
+  <meta
+    property="og:description"
+    content="{% if page.description %}{{ page.description }}{% else %}{{ page.abstract }}{% endif %}."
+  />
+  <meta
+    name="twitter:description"
+    content="{% if page.description %}{{ page.description }}{% else %}{{ page.abstract }}{% endif %}."
+  />
   <meta name="twitter:site" content="@jensravens" />
   {% if page.thumbnail %}
-    <meta name="twitter:image" content="{{page.thumbnail | prepend: site.url}}" />
-    <meta property="og:image" content="{{page.thumbnail | prepend: site.url}}" />
+  <meta name="twitter:image" content="{{page.thumbnail | prepend: site.url}}" />
+  <meta property="og:image" content="{{page.thumbnail | prepend: site.url}}" />
   {% endif %}
 </head>

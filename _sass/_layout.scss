@@ -2,7 +2,7 @@
   max-width: $container;
   margin: 0 10px;
   position: relative;
-  @media(min-width: $container+20px){
+  @media (min-width: $container+20px) {
     margin: 0 auto;
   }
 }
@@ -13,12 +13,11 @@ nav.home {
   position: relative;
   left: $padding;
   top: $padding + 2px;
-  font-size: $font-size*.8;
+  font-size: $font-size * 0.8;
   width: $size-nav;
   z-index: 9999;
 
-
-  @media(min-width: $break+2*$size-nav){
+  @media (min-width: $break+2*$size-nav) {
     position: fixed;
   }
 
@@ -26,23 +25,22 @@ nav.home {
     display: block;
     height: $size-nav;
     width: $size-nav;
-    background-color: $color-text;
+    background-color: var(--color-box);
     line-height: $size-nav;
     text-align: center;
-    color: $color-background;
+    color: var(--color-background);
     text-decoration: none;
     font-family: $font-family-heading;
     font-weight: lighter;
   }
 
   + article > .hero {
-    margin-top: -($size-nav + 4*$padding);
-    @media(min-width:$break+2*$size-nav){
-      margin-top: -(4*$padding);
+    margin-top: -($size-nav + 4 * $padding);
+    @media (min-width: $break+2*$size-nav) {
+      margin-top: -(4 * $padding);
     }
   }
 }
-
 
 .footer {
   margin-top: 60px;
