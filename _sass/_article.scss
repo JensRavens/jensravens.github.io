@@ -29,6 +29,13 @@ article {
       border-radius: $border-radius;
     }
 
+    @media (min-width: $container+2*100px) {
+      margin: 0 -100px;
+      width: calc(100% + 200px);
+      padding: 10px 20px;
+      border-radius: $border-radius;
+    }
+
     overflow: auto;
   }
 }
