@@ -2,11 +2,10 @@
 title: End-to-End Encryption in Rails
 tags: [gpg, rails, ruby, e2e, encryption]
 hero: /img/posts/pgp/header.jpg
-abstract: Nowadays, the news is full of data leaks, breaks, and hacks and one thing is clear - you don’t want to be the one who leaks all your customer data to some hackers on the internet. Learn how to encrypt your content end-to-end with Rails and PGP.
+abstract: Nowadays, the news is full of data leaks, breaks, and hacks and one thing is clear - you don’t want to be the one who leaks all your customer data to some hackers on the internet. Learn how to encrypt your content end-to-end with Rails and PGP
 ---
 
 # _End-to-End Encryption_ in _Rails_
-
 
 ## Why You Should Care About Encryption
 
@@ -30,11 +29,9 @@ So which one to use?
 
 So as both methods have their pros and cons, you should carefully consider which option to use. E2E encryption works great for very personal data (e.g. social security numbers, private messages, secure notes) while it becomes a really hard problem if you’re dealing with data you want to filter on the server side (server-side full text search becomes impossible).
 
-
 ## How does E2E encryption work?
 
 This post focusses on asymmetric encryption - which is just for a fancy word for saying that you can encrypt a message with a public key and decrypt it with a corresponding private key. Only the owner of the private key can decrypt a message, but everyone having access to his public keys can send him encrypted messages. A popular implementation is PGP which is mostly used to encrypt emails.
-
 
 ## What we are going to build
 
@@ -45,14 +42,13 @@ To showcase several parts of e2e encrypted systems, we’re going to build a sec
 - users can send messages to other users and encrypt them in the browser
 - users can receive messages and decrypt them in the browser
 
-
 ## The Tech-Stack
 
 Even though a lot of things happen on the client, we are going to use a fully server-side rendered application:
 
 - Rails, ActiveRecord and Postgres
-    - slim as a templating engine (you could of course also use ERB)
-    - devise for user authentication
+  - slim as a templating engine (you could of course also use ERB)
+  - devise for user authentication
 - Webpacker and Stimulus for the JavaScript part
 - openpgp.js as an encryption library
 - Turbolinks to turn the application into a single page application (SPA)
@@ -76,7 +72,7 @@ def change
 end
 ```
 
-As you can see the user has an array of (public) keys, so other users can send them encrypted messages. Let’s allow that user to login in:  `rails g devise:install User` and suddenly your user can login and sign up. Let’s give him something to login to. Add some user routes to the `routes.rb` (more about messages later):
+As you can see the user has an array of (public) keys, so other users can send them encrypted messages. Let’s allow that user to login in: `rails g devise:install User` and suddenly your user can login and sign up. Let’s give him something to login to. Add some user routes to the `routes.rb` (more about messages later):
 
 ```ruby
 resources :users, only: [:index, :show, :update], shallow: true do
@@ -101,7 +97,6 @@ class UsersController < ApplicationController
   end
 end
 ```
-
 
 Thanks to devise we get the `current_user` method and an `authenticate_user!` filter for free and we can fully focus on our logic. The index page should have a list of all users that can be contacted (only users that have public keys can receive messages). Also, the `update` method allows adding additional keys via the `User` model:
 
@@ -140,7 +135,6 @@ h3 Add Keys
 And with that we have a more or less functional UI (more on generating keys later):
 
 ![PGP Key Management](/img/posts/pgp/key-management.png)
-
 
 Great, let’s add some messages with `rails g model message` and modifying the migration as follows:
 
@@ -207,7 +201,6 @@ This action will redirect to the receiver - which effectively reloads the page a
 
 ![PGP based Chat](/img/posts/pgp/chat.png)
 
-
 With the basic CRUD out of the way, let’s get to the interesting part - the encryption.
 
 ## Key Management
@@ -227,6 +220,7 @@ export async function loadPGP() {
 This code uses an async import (isn’t modern javascript cool?), which will tell webpacker to split the bundle into multiple chunks. This way the pgp library is only loaded if it is actually needed and will not block loading the page.
 
 Now let’s allow the user to generate a keypair:
+
 ```js
 // crypto.js
 
@@ -239,9 +233,10 @@ export async function generateKey() {
 }
 ```
 
-This makes sure the dependency is loaded before calling into pgp to generate a key.  This code is using the `curve25519` encryption curve, which is quite a recent addition that results in secure, but relatively short keys.
+This makes sure the dependency is loaded before calling into pgp to generate a key. This code is using the `curve25519` encryption curve, which is quite a recent addition that results in secure, but relatively short keys.
 
 Let’s also add a message to persist a private key in the browser for later use:
+
 ```js
 // crypto.js
 // persist an array of all known private keys in local storage so it can be read later
@@ -253,6 +248,7 @@ export async function registerKey(plainKey) {
 ```
 
 So let’s wire it up to our UI. First, we add some fields to the view:
+
 ```slim
 # users/index.html.slim
 
@@ -303,6 +299,7 @@ And we’re done: with a click on the generate button, PGP will create a key pai
 ## Sending Encrypted Data
 
 Instead of sending the plain text content, we just want to send the encrypted version. Change the message form like this:
+
 ```slim
 # users/show.html.slim
 = form_with model: @message, url: user_messages_path(@user), data: { controller: "encrypt", encrypt_keys: (@user.keys + current_user.keys).to_json } do |f|
@@ -314,6 +311,7 @@ Instead of sending the plain text content, we just want to send the encrypted ve
 This adds an `encrypt` controller and a corresponding keys-data entry with all public keys of the user (see key rotation in the closing notes about why this is a good idea). Also, we add a hidden field that will contain the encrypted content and set the `name` of the text area to `nil` to prevent it from being submitted to the server. On change of the text area (which will be triggered when the user blurs from the field, e.g. by clicking the send button) it will call the `encrypt` function.
 
 Let’s start by implementing the business logic for this:
+
 ```js
 // crypto.js
 
@@ -340,6 +338,7 @@ export async function parseKeys(plainKeys) {
 ```
 
 This function takes a simple text and turns it into an encrypted message that can only be read by the keys specified as an argument. As keys, we will use the keys of the receiver and the keys of the sender so both parties can see the messages history. Let’s wire it up with a Stimulus controller:
+
 ```js
 // controllers/encrypt_controller.js
 import { Controller } from "stimulus";
@@ -366,6 +365,7 @@ export default class extends Controller {
 ```
 
 Now you should be able to send a message to another account already. If you look into the database, you will see that the content is encrypted:
+
 ```pgp
 -----BEGIN PGP MESSAGE-----
 Version: OpenPGP.js v4.10.4
@@ -384,6 +384,7 @@ It’s nice that we can send messages - but a bit pointless if no one can read t
 ## Reading Encrypted Data
 
 We’re almost there. Let’s start with the model this time:
+
 ```js
 // crypto.js
 
@@ -411,6 +412,7 @@ export async function loadKeys() {
 ```
 
 Let’s add some controller annotations to our view:
+
 ```slim
 # views/users/show.html.slim
 
@@ -423,6 +425,7 @@ Let’s add some controller annotations to our view:
 This attaches every div to its own `DecryptController` instance. Also, it assigns the message content via a data attribute and defines a target where the content should go.
 
 Time for the controller itself:
+
 ```js
 // decrypt_controller.js
 
@@ -446,7 +449,6 @@ export default class extends Controller {
 
 Reload your browser and you should see the decrypted message on the screen. Congratulations, you have a fully end-to-end encrypted messaging application! 🎉
 
-
 ## Where to go from here
 
 You have seen how to generate and persist key pairs - the public key is persisted on the server while the private key stays within the browser. Also, you have seen how to encrypt a form with openpgp.js before sending it and decrypting the data during display.
@@ -454,7 +456,6 @@ You have seen how to generate and persist key pairs - the public key is persiste
 The goal of this architecture is to stay as much Rails as possible - no client-side markup generation and keeping the scripts down to a minimum.
 
 Here are some notes if you would like to implement end-to-end encryption with this tech stack in your own Rails application:
-
 
 - Stimulus picks up newly inserted messages from all content changes - so if you would like real-time messaging you can easily inject generated markup via ActionCable, e.g. via Stimulus Reflex. Once your decrypt controller is in place it doesn’t matter where the content comes from.
 - In a production-ready application, you need to give a user a way to remove old keys, e.g. when a key has been compromised and replaced with a new one. By allowing multiple public keys on a user you have a way of transitioning between keys or having different keys on different devices.
