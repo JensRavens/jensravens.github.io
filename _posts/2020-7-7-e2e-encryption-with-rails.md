@@ -27,7 +27,7 @@ So which one to use?
 - gives the user total control about her data
 - is harder to implement as all data processing has to happen on the client (more about this later).
 
-So as both methods have their pros and cons, you should carefully consider which option to use. E2E encryption works great for very personal data (e.g. social security numbers, private messages, secure notes) while it becomes a really hard problem if you’re dealing with data you want to filter on the server side (server-side full text search becomes impossible).
+So as both methods have their pros and cons, you should carefully consider which option to use. E2E encryption works great for very personal data (e.g. social security numbers, private messages, secure notes) while it becomes a really hard problem if you’re dealing with data you want to filter on the server side (server-side full-text search becomes impossible).
 
 ## How does E2E encryption work?
 
@@ -35,7 +35,7 @@ This post focusses on asymmetric encryption - which is just for a fancy word for
 
 ## What we are going to build
 
-To showcase several parts of e2e encrypted systems, we’re going to build a secure messaging app where users can send each other encrypted messages. The encryption is based on our work on [CovTrace](https://covtrace.de), a digital attendence list for restaurants during Covid19-times. Features include:
+To showcase several parts of e2e encrypted systems, we’re going to build a secure messaging app where users can send each other encrypted messages. The encryption is based on our work on [CovTrace](https://covtrace.de), a digital attendance list for restaurants during Covid19-times. Features include:
 
 - users can signup and manage their encryption keys
 - users can create a new key pair of private and public key
@@ -217,7 +217,7 @@ export async function loadPGP() {
 }
 ```
 
-This code uses an async import (isn’t modern javascript cool?), which will tell webpacker to split the bundle into multiple chunks. This way the pgp library is only loaded if it is actually needed and will not block loading the page.
+This code uses an async import (isn’t modern javascript cool?), which will tell Webpacker to split the bundle into multiple chunks. This way the PGP library is only loaded if it is actually needed and will not block loading the page.
 
 Now let’s allow the user to generate a keypair:
 
@@ -233,7 +233,7 @@ export async function generateKey() {
 }
 ```
 
-This makes sure the dependency is loaded before calling into pgp to generate a key. This code is using the `curve25519` encryption curve, which is quite a recent addition that results in secure, but relatively short keys.
+This makes sure the dependency is loaded before calling into PGP to generate a key. This code is using the `curve25519` encryption curve, which is quite a recent addition that results in secure, but relatively short keys.
 
 Let’s also add a message to persist a private key in the browser for later use:
 
@@ -266,7 +266,7 @@ So let’s wire it up to our UI. First, we add some fields to the view:
   = f.submit "Add Key", data: { action: "click->keys#register" }
 ```
 
-As you can see we add a keys stimulus controller around the form and a generate button to the top. It also wires the public key input to the controller and puts the private key as a target to the controller. Note how the private key’s name is set to `nil`: this prevents this field from being included into the request (remember: we want the private key never to touch our server - or it wouldn’t be effective end to end encryption anymore). Also there’s an action on the submit button that will trigger the `register` method of our keys controller. Let’s write the controller:
+As you can see we add a keys stimulus controller around the form and a generate button to the top. It also wires the public key input to the controller and puts the private key as a target to the controller. Note how the private key’s name is set to `nil`: this prevents this field from being included into the request (remember: we want the private key never to touch our server - or it wouldn’t be an effective end to end encryption anymore). Also there’s an action on the submit button that will trigger the `register` method of our keys controller. Let’s write the controller:
 
 ```js
 // app/javascript/controllers/keys_controller.js
@@ -294,7 +294,7 @@ export default class extends Controller {
 }
 ```
 
-And we’re done: with a click on the generate button, PGP will create a key pair and fill it into the text fields. When submitting the form, the client side will persist the private key in `localStorage` while the server will add the public key to the user’s record (just keep in mind the `form_with` will always use rails ujs for form submission, so this form is an AJAX request). Now that we have keys, let’s send some messages!
+And we’re done: with a click on the generate button, PGP will create a key pair and fill it into the text fields. When submitting the form, the client side will persist the private key in `localStorage` while the server will add the public key to the user’s record (just keep in mind the `form_with` will always use rails UJS for form submission, so this form is an AJAX request). Now that we have keys, let’s send some messages!
 
 ## Sending Encrypted Data
 
