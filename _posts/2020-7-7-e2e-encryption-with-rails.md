@@ -1,11 +1,11 @@
 ---
-title: End-to-End Encryption in Rails
+title: End-to-End Encryption in Rails with Stimulus and OpenPGP
 tags: [gpg, rails, ruby, e2e, encryption]
 hero: /img/posts/pgp/header.jpg
 abstract: Nowadays, the news is full of data leaks, breaks, and hacks and one thing is clear - you don’t want to be the one who leaks all your customer data to some hackers on the internet. Learn how to encrypt your content end-to-end with Rails and PGP
 ---
 
-# _End-to-End Encryption_ in _Rails_
+# _End-to-End Encryption_ in _Rails_ with Stimulus and OpenPGP.js
 
 ## Why You Should Care About Encryption
 
