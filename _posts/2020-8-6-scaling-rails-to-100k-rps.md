@@ -16,3 +16,7 @@ We've all heard the "Rails can't scale" myth, but how far can we scale Rails? Th
 This talk was given at [RUG::B in Berlin](https://www.rug-b.de/events/ruby-usergroup-berlin-august-2020-635).
 
 <iframe src="//www.slideshare.net/slideshow/embed_code/key/u3TAiP7yJ6i89U" width="100%" height="485" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe>
+
+You can find a recording on YouTube:
+
+<iframe width="100%" height="400px" src="https://www.youtube.com/embed/J7VwDHg5kK0?ecver=1" frameborder="0" allowfullscreen></iframe>
