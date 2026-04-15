@@ -98,7 +98,7 @@ You know how everyone says "this meeting could have been an email"? Well. Now yo
 
 ## Try it
 
-You need an AI that can search the web (Claude, ChatGPT, or anything with research capabilities), a topic you care about, and your voice. If you use Claude Code — especially for priming context before a development session — there's a [full skill you can install](https://github.com/jensravens/expert-interview) that handles the entire flow. But you can do this manually in two prompts.
+You need an AI that can search the web (Claude, ChatGPT, or anything with research capabilities), a topic you care about, and your voice. If you use Claude Code — especially for priming context before a development session — there's a [full skill you can install](https://github.com/jensravens/skills) that handles the entire flow. But you can do this manually in two prompts.
 
 ### Step 1: Research + Interview
 
